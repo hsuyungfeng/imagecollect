@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>顧客照片比對 - <%= searchId %></title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>顧客照片比對：<%= searchId %></h1>
+  
+  <% 
+  // 以 metaTime 遞增排序
+  files.sort((a, b) => a.metaTime > b.metaTime ? 1 : a.metaTime < b.metaTime ? -1 : 0);
+  const chunkSize = 5;
+  const chunks = [];
+  for (let i = 0; i < files.length; i += chunkSize) {
+    chunks.push(files.slice(i, i + chunkSize));
+  }
+  %>
+  <div class="image-grid">
+    <% chunks.forEach(chunk => { %>
+      <div class="image-row" style="display: flex;">
+        <% 
+        // 強制每列5格，若不足補空白
+        for (let j = 0; j < chunkSize; j++) { 
+          const file = chunk[j];
+        %>
+          <div class="image-card" style="flex: 1;">
+            <% if (file) { %>
+              <img src="/cache/<%= searchId %>/<%= file.name %>" 
+                   alt="<%= file.name %>" 
+                   class="preview-img"
+                   data-timestamp="<%= file.metaTime %>">
+              <div class="meta" style="display: flex; flex-direction: column; align-items: flex-start;">
+                <div>A: <%= file.name %></div>
+                <!-- 不顯示B:欄位 -->
+              </div>
+            <% } else { %>
+              <!-- 空白格，保持5格 -->
+              <div style="visibility:hidden;height:0;"></div>
+            <% } %>
+          </div>
+        <% } %>
+      </div>
+    <% }) %>
+  </div>
+
+  <div id="modal" class="modal">
+    <span id="closeModal" class="close">&times;</span>
+    <div class="modal-nav">
+      <button id="prevBtn">< 上一張</button>
+      <button id="nextBtn">下一張 ></button>
+    </div>
+    <div class="zoom-controls">
+      <button id="zoomIn">+</button>
+      <button id="zoomOut">-</button>
+      <button id="resetZoom">重置</button>
+    </div>
+    <img id="modalImg" class="modal-content">
+  </div>
+  
+  <script src="/results.js"></script>
+</body>
+</html>

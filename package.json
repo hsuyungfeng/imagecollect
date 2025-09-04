@@ -1,0 +1,36 @@
+{
+  "type": "module",
+  "name": "imagecollect",
+  "version": "1.0.0",
+  "main": "dist/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "node dist/app.js",
+    "dev": "tsc --watch & nodemon dist/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "basic-ftp": "^5.0.5",
+    "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
+    "exif-parser": "^0.1.12",
+    "exif-reader": "^2.0.2",
+    "express": "^5.1.0",
+    "lodash": "^4.17.21",
+    "pinyin": "^2.11.2",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.2",
+    "@types/lodash": "^4.17.16",
+    "@types/node": "^22.15.19",
+    "@types/pinyin": "^2.10.2",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}

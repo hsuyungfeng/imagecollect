@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>緻妍外科診所</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>緻妍外科診所 影像搜尋</h1>
+
+  <% for (let i = 1; i <= 5; i++) { %>
+    <form id="searchForm_<%= i %>">
+      <label for="month_<%= i %>">月份：</label>
+      <input type="text" id="month_<%= i %>" name="month" placeholder="MM">
+
+      <label for="day_<%= i %>">日期：</label>
+      <input type="text" id="day_<%= i %>" name="day" placeholder="DD">
+
+      <label for="name_<%= i %>">姓名：</label>
+      <input type="text" id="name_<%= i %>" name="name" placeholder="姓名">
+
+      <button type="submit">搜尋</button>
+      <span id="searchStatus_<%= i %>"></span>
+    </form>
+  <% } %>
+
+  <script src="/script.js"></script>
+</body>
+</html>
